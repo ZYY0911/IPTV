@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.yingyuzhang.iptv'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.yingyuzhang.iptv"
+        minSdk 16
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //沉浸式状态栏和沉浸式导航栏管理  基础依赖包，必须要依赖
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+
+    //https://github.com/androidx/media
+    implementation 'androidx.media3:media3-exoplayer:1.0.0'
+    implementation 'androidx.media3:media3-exoplayer-dash:1.0.0'
+    implementation 'androidx.media3:media3-exoplayer-hls:1.0.0'
+    implementation 'androidx.media3:media3-ui:1.0.0'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+
+    //关于 64K 引用限制
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
+}

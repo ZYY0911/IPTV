@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/bg_show"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tv_net"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络设置"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/radio_group" />
+
+    <TextView
+        android:id="@+id/tv_net_re"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        android:text="修改后需重启此应用"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group"
+        app:layout_constraintLeft_toRightOf="@id/radio_group"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/radio_group" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/tv_net"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <RadioButton
+            android:id="@+id/rb_v6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="IPv6"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rb_v4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="IPv4"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rb_v5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="多路融合"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/radio_group2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group" />
+
+    <TextView
+        android:id="@+id/tv_ratio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="画面比例"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/radio_group2" />
+
+    <RadioGroup
+        android:id="@+id/radio_group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/tv_net"
+        app:layout_constraintTop_toBottomOf="@id/radio_group">
+
+        <RadioButton
+            android:id="@+id/rb_init"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="原始比例"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rb_fill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="适应屏幕"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rb_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="16:9"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+
+        <RadioButton
+            android:id="@+id/rb_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="3dp"
+            android:text="4:3"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+    </RadioGroup>
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/radio_group3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group2" />
+
+    <TextView
+        android:id="@+id/tv_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自动更新"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/radio_group3" />
+
+    <RadioGroup
+        android:id="@+id/radio_group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/tv_auto"
+        app:layout_constraintTop_toBottomOf="@id/radio_group2">
+
+        <RadioButton
+            android:id="@+id/rb_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="6dp"
+            android:text="开"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rb_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/focus_background"
+            android:paddingHorizontal="6dp"
+            android:text="关"
+            android:textColor="@color/white" />
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/bt_re_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/focus_background"
+        android:drawableLeft="@mipmap/tongzhiguangbo"
+        android:text="切换到广播"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <Button
+        android:id="@+id/bt_re_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/focus_background"
+        android:drawableLeft="@mipmap/shezhigengxin"
+        android:text="重置应用"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/bt_re_radio" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/focus_background"
+        android:focusable="true"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="6dp"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bt_re_app"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bt_re_app" />
+</androidx.constraintlayout.widget.ConstraintLayout>
