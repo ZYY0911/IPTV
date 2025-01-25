@@ -5246,13 +5246,15 @@ com.yingyuzhang.iptv.activity.MainActivity:
 com.yingyuzhang.iptv.adapter.TvListAdapter:
     public final int getIndexCurrent()
     public final void setIndexCurrent(int)
-com.yingyuzhang.iptv.base.AppAdapter$SimpleHolder:
+com.yingyuzhang.iptv.base.AppAdapter$AppViewHolder:
+    public void <init>(com.yingyuzhang.iptv.base.AppAdapter,android.view.View)
+com.yingyuzhang.iptv.base.AppAdapter$SimpleViewHolder:
     final synthetic com.yingyuzhang.iptv.base.AppAdapter this$0
     public void <init>(com.yingyuzhang.iptv.base.AppAdapter,int)
     public void <init>(com.yingyuzhang.iptv.base.AppAdapter,android.view.View)
 com.yingyuzhang.iptv.base.AppAdapter:
-    private boolean mLastPage
-    private java.lang.Object mTag
+    private boolean lastPage
+    private java.lang.Object tag
     public void addData(java.util.List)
     public void addItem(int,java.lang.Object)
     public void addItem(java.lang.Object)
@@ -5272,12 +5274,19 @@ com.yingyuzhang.iptv.base.AppAdapter:
 com.yingyuzhang.iptv.base.BaseActivity:
     public final void setNotFirstShow(boolean)
 com.yingyuzhang.iptv.base.BaseAdapter:
-    private void checkRecyclerViewState()
+    private final void checkRecyclerViewState()
+    public int getColor(int)
+    public android.graphics.drawable.Drawable getDrawable(int)
     public androidx.recyclerview.widget.RecyclerView getRecyclerView()
+    public android.content.res.Resources getResources()
+    public java.lang.String getString(int)
+    public varargs java.lang.String getString(int,java.lang.Object[])
+    public java.lang.Object getSystemService(java.lang.Class)
     public void setOnChildClickListener(int,com.yingyuzhang.iptv.base.BaseAdapter$OnChildClickListener)
     public void setOnChildLongClickListener(int,com.yingyuzhang.iptv.base.BaseAdapter$OnChildLongClickListener)
     public void setOnItemClickListener(com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener)
     public void setOnItemLongClickListener(com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener)
+com.yingyuzhang.iptv.base.action.ResourcesAction$DefaultImpls
 com.yingyuzhang.iptv.base.action.ResourcesAction
 com.yingyuzhang.iptv.databinding.TvListItemBinding:
     public final androidx.constraintlayout.widget.Guideline guideline
@@ -11930,8 +11939,8 @@ com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener:
 com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener:
     public abstract boolean onItemLongClick(androidx.recyclerview.widget.RecyclerView,android.view.View,int)
 com.yingyuzhang.iptv.base.BaseAdapter:
-    public com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener mItemClickListener
-    public com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener mItemLongClickListener
+    public com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener itemClickListener
+    public com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener itemLongClickListener
 kotlin.ExceptionsKt
 kotlin.LazyKt
 kotlin.LazyKt__LazyKt

@@ -3,8 +3,8 @@
 # min_api: 16
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 9c30a45
-# pg_map_hash: SHA-256 9c30a451a32cb42e90534022363d6d65dbfa723a9372d5f08964e97626d9e2c3
+# pg_map_id: 42812ca
+# pg_map_hash: SHA-256 42812ca37806734b8cc229439409dcb668c0955024250c3e22483c8be0a8ba90
 android.media.MediaDrmException -> android.media.MediaDrmException:
 # {"id":"com.android.tools.r8.synthesized"}
 android.media.MediaDrmThrowable -> android.media.MediaDrmThrowable:
@@ -35870,21 +35870,25 @@ com.yingyuzhang.iptv.adapter.OnClickItemInterface -> m0.a:
 com.yingyuzhang.iptv.adapter.TvListAdapter -> com.yingyuzhang.iptv.adapter.TvListAdapter:
     com.yingyuzhang.iptv.adapter.OnClickItemInterface onClickItemInterface -> h
     int indexCurrent -> i
-    1:1:com.yingyuzhang.iptv.adapter.OnClickItemInterface getOnClickItemInterface():0:0 -> l
+    1:1:androidx.recyclerview.widget.RecyclerView$LayoutManager generateDefaultLayoutManager(android.content.Context):0:0 -> g
+    1:1:com.yingyuzhang.iptv.adapter.OnClickItemInterface getOnClickItemInterface():0:0 -> n
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lm0/a;"}
-    1:1:com.yingyuzhang.iptv.base.BaseAdapter$ViewHolder onCreateViewHolder(android.view.ViewGroup,int):0:0 -> m
-    1:1:void selectChange(int):0:0 -> n
-    1:1:void setOnClickItemInterface(com.yingyuzhang.iptv.adapter.OnClickItemInterface):0:0 -> o
+    1:1:com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder onCreateViewHolder(android.view.ViewGroup,int):0:0 -> o
+    1:1:void selectChange(int):0:0 -> p
+    1:1:void setOnClickItemInterface(com.yingyuzhang.iptv.adapter.OnClickItemInterface):0:0 -> q
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lm0/a;)V"}
 com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder -> com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder:
-    android.widget.ImageView itemPng -> e
-    android.widget.TextView itemName -> f
-    android.widget.TextView itemNum -> g
-    com.yingyuzhang.iptv.adapter.TvListAdapter this$0 -> h
+    kotlin.Lazy itemPng$delegate -> f
+    kotlin.Lazy itemName$delegate -> g
+    kotlin.Lazy itemNum$delegate -> h
+    com.yingyuzhang.iptv.adapter.TvListAdapter this$0 -> i
     1:1:void onBindView(int):0:0 -> d
-    1:1:void $r8$lambda$h-sb7nZCjbLxX4LNcF07wmrwYQg(com.yingyuzhang.iptv.adapter.TvListAdapter,int,com.yingyuzhang.iptv.bean.TvList,android.view.View):0:0 -> e
+    1:1:void $r8$lambda$i1gpl1Z9-hcHrJrb2puB0Qrp-Rg(com.yingyuzhang.iptv.adapter.TvListAdapter,int,com.yingyuzhang.iptv.bean.TvList,android.view.View):0:0 -> e
       # {"id":"com.android.tools.r8.synthesized"}
-    1:1:void onBindView$lambda$0(com.yingyuzhang.iptv.adapter.TvListAdapter,int,com.yingyuzhang.iptv.bean.TvList,android.view.View):0:0 -> f
+    1:1:android.widget.TextView getItemName():0:0 -> f
+    1:1:android.widget.TextView getItemNum():0:0 -> g
+    1:1:android.widget.ImageView getItemPng():0:0 -> h
+    1:1:void onBindView$lambda$2$lambda$1(com.yingyuzhang.iptv.adapter.TvListAdapter,int,com.yingyuzhang.iptv.bean.TvList,android.view.View):0:0 -> i
 com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$$ExternalSyntheticLambda0 -> m0.b:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
@@ -35895,12 +35899,23 @@ com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$$ExternalSyntheticLambda0 
       # {"id":"com.android.tools.r8.synthesized"}
     1:1:void com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$$InternalSyntheticLambda$1$c64c20e64501139161fd37d29ae030bef98065240d337529ac9cd347520f06e8$0.onClick(android.view.View):0:0 -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
+com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$itemName$2 -> com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$a:
+    com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder this$0 -> c
+    1:1:android.widget.TextView invoke():0:0 -> a
+com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$itemNum$2 -> com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$b:
+    com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder this$0 -> c
+    1:1:android.widget.TextView invoke():0:0 -> a
+com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$itemPng$2 -> com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder$c:
+    com.yingyuzhang.iptv.adapter.TvListAdapter$ViewHolder this$0 -> c
+    1:1:android.widget.ImageView invoke():0:0 -> a
 com.yingyuzhang.iptv.base.AppAdapter -> com.yingyuzhang.iptv.base.AppAdapter:
-    java.util.List mDataSet -> f
-    int mPageNumber -> g
-    1:1:int getCount():0:0 -> j
-    1:1:void setData(java.util.List):0:0 -> k
-com.yingyuzhang.iptv.base.AppAdapter$SimpleHolder -> com.yingyuzhang.iptv.base.AppAdapter$SimpleHolder:
+    java.util.List dataSet -> f
+    int pageNumber -> g
+    1:1:int getCount():0:0 -> l
+    1:1:void setData(java.util.List):0:0 -> m
+com.yingyuzhang.iptv.base.AppAdapter$AppViewHolder -> com.yingyuzhang.iptv.base.AppAdapter$AppViewHolder:
+    com.yingyuzhang.iptv.base.AppAdapter this$0 -> e
+com.yingyuzhang.iptv.base.AppAdapter$SimpleViewHolder -> com.yingyuzhang.iptv.base.AppAdapter$SimpleViewHolder:
     1:1:void onBindView(int):0:0 -> d
 com.yingyuzhang.iptv.base.BaseActivity -> com.yingyuzhang.iptv.base.BaseActivity:
     boolean isNotFirstShow -> c
@@ -35916,25 +35931,25 @@ com.yingyuzhang.iptv.base.BaseActivity -> com.yingyuzhang.iptv.base.BaseActivity
     1:1:boolean isStatusBarEnabled():0:0 -> i
     androidx.constraintlayout.widget.ConstraintLayout setView() -> j
 com.yingyuzhang.iptv.base.BaseAdapter -> com.yingyuzhang.iptv.base.BaseAdapter:
-    android.content.Context mContext -> a
-    androidx.recyclerview.widget.RecyclerView mRecyclerView -> b
-    android.util.SparseArray mChildClickListeners -> c
-    android.util.SparseArray mChildLongClickListeners -> d
-    int mPositionOffset -> e
-    1:1:androidx.recyclerview.widget.RecyclerView access$000(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> a
-    1:1:com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener access$100(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> b
+    android.content.Context context -> a
+    androidx.recyclerview.widget.RecyclerView recyclerView -> b
+    kotlin.Lazy childClickListeners$delegate -> c
+    kotlin.Lazy childLongClickListeners$delegate -> d
+    int positionOffset -> e
+    1:1:android.util.SparseArray access$getChildClickListeners(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> a
+    1:1:android.util.SparseArray access$getChildLongClickListeners(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> b
+    1:1:com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener access$getItemClickListener$p(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/yingyuzhang/iptv/base/BaseAdapter;)Lcom/yingyuzhang/iptv/base/BaseAdapter$a;"}
-    1:1:com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener access$200(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> c
+    1:1:com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener access$getItemLongClickListener$p(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> d
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/yingyuzhang/iptv/base/BaseAdapter;)Lcom/yingyuzhang/iptv/base/BaseAdapter$b;"}
-    1:1:android.util.SparseArray access$300(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> d
-    1:1:android.util.SparseArray access$400(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> e
-    1:1:int access$500(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> f
+    1:1:int access$getPositionOffset$p(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> e
+    1:1:androidx.recyclerview.widget.RecyclerView access$getRecyclerView$p(com.yingyuzhang.iptv.base.BaseAdapter):0:0 -> f
     1:1:androidx.recyclerview.widget.RecyclerView$LayoutManager generateDefaultLayoutManager(android.content.Context):0:0 -> g
-    1:1:android.content.Context getContext():0:0 -> h
-    1:1:void onBindViewHolder(com.yingyuzhang.iptv.base.BaseAdapter$ViewHolder,int):0:0 -> i
-com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener -> com.yingyuzhang.iptv.base.BaseAdapter$a:
-com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener -> com.yingyuzhang.iptv.base.BaseAdapter$b:
-com.yingyuzhang.iptv.base.BaseAdapter$ViewHolder -> com.yingyuzhang.iptv.base.BaseAdapter$ViewHolder:
+    1:1:android.util.SparseArray getChildClickListeners():0:0 -> h
+    1:1:android.util.SparseArray getChildLongClickListeners():0:0 -> i
+    1:1:android.content.Context getContext():0:0 -> j
+    1:1:void onBindViewHolder(com.yingyuzhang.iptv.base.BaseAdapter$BaseViewHolder,int):0:0 -> k
+com.yingyuzhang.iptv.base.BaseAdapter$BaseViewHolder -> com.yingyuzhang.iptv.base.BaseAdapter$BaseViewHolder:
     com.yingyuzhang.iptv.base.BaseAdapter this$0 -> c
     1:1:void <init>(com.yingyuzhang.iptv.base.BaseAdapter,int):0:0 -> <init>
     2:2:void <init>(com.yingyuzhang.iptv.base.BaseAdapter,android.view.View):0:0 -> <init>
@@ -35942,6 +35957,14 @@ com.yingyuzhang.iptv.base.BaseAdapter$ViewHolder -> com.yingyuzhang.iptv.base.Ba
     1:1:android.view.View getItemView():0:0 -> b
     1:1:int getViewHolderPosition():0:0 -> c
     void onBindView(int) -> d
+com.yingyuzhang.iptv.base.BaseAdapter$OnItemClickListener -> com.yingyuzhang.iptv.base.BaseAdapter$a:
+com.yingyuzhang.iptv.base.BaseAdapter$OnItemLongClickListener -> com.yingyuzhang.iptv.base.BaseAdapter$b:
+com.yingyuzhang.iptv.base.BaseAdapter$childClickListeners$2 -> com.yingyuzhang.iptv.base.BaseAdapter$c:
+    com.yingyuzhang.iptv.base.BaseAdapter$childClickListeners$2 INSTANCE -> c
+    1:1:android.util.SparseArray invoke():0:0 -> a
+com.yingyuzhang.iptv.base.BaseAdapter$childLongClickListeners$2 -> com.yingyuzhang.iptv.base.BaseAdapter$d:
+    com.yingyuzhang.iptv.base.BaseAdapter$childLongClickListeners$2 INSTANCE -> c
+    1:1:android.util.SparseArray invoke():0:0 -> a
 com.yingyuzhang.iptv.databinding.ActivityLaunchBinding -> com.yingyuzhang.iptv.databinding.ActivityLaunchBinding:
     androidx.constraintlayout.widget.ConstraintLayout rootView -> a
     android.widget.ProgressBar progressBar -> b
