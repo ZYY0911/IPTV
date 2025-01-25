@@ -86,3 +86,8 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+app/seeds.txt
+app/unused.txt
+app/mapping.txt
+app/release
