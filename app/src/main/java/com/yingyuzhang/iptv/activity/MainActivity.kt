@@ -10,7 +10,6 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.media3.common.AudioAttributes
@@ -31,11 +30,9 @@ import com.yingyuzhang.iptv.bean.TvList
 import com.yingyuzhang.iptv.databinding.ActivityMainBinding
 import com.yingyuzhang.iptv.pop.SettingPopWindows
 import com.yingyuzhang.iptv.pop.TvListPopWindows
-import com.yingyuzhang.iptv.utils.DialogUtil
 import com.yingyuzhang.iptv.utils.FileUtils
 import com.yingyuzhang.iptv.utils.SharedPreferencesUtil
 import java.util.Locale
-import kotlin.system.exitProcess
 
 
 class MainActivity : BaseActivity() {
@@ -312,8 +309,9 @@ class MainActivity : BaseActivity() {
                                 SharedPreferencesUtil.IS_IPV6,
                                 true
                             )
-                            finishAffinity()
-                            exitProcess(0)
+                            settingPop!!.dismiss()
+                            App.restartApp(this@MainActivity, LaunchActivity::class.java)
+                            finish()
                         }
 
                         "IPv4" -> {
@@ -321,8 +319,9 @@ class MainActivity : BaseActivity() {
                                 SharedPreferencesUtil.IS_IPV6,
                                 false
                             )
-                            finishAffinity()
-                            exitProcess(0)
+                            settingPop!!.dismiss()
+                            App.restartApp(this@MainActivity, LaunchActivity::class.java)
+                            finish()
                         }
                     }
                 }
@@ -369,6 +368,12 @@ class MainActivity : BaseActivity() {
             .placeholder(R.mipmap.tupianjiazaishibai)
             .into(binding.tvPng)
         showMenuBar()
+    }
+
+    fun isIPv6Url(url: String): Boolean {
+        val regex =
+            Regex("^(https?):\\/\\/\\[(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}\\](?::\\d+)?(\\/.*)?$")
+        return regex.matches(url)
     }
 
     private fun showMenuBar() {
@@ -503,7 +508,7 @@ class MainActivity : BaseActivity() {
                     toast = Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT)
                 toast?.show()
             } else {
-                toast?.cancel() 
+                toast?.cancel()
                 startTime = 0
                 super.onBackPressed()
             }

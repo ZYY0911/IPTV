@@ -5,8 +5,11 @@ import android.util.Xml
 import com.yingyuzhang.iptv.App
 import com.yingyuzhang.iptv.bean.ForeShow
 import com.yingyuzhang.iptv.bean.TvList
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.File
@@ -24,10 +27,11 @@ class FileUtils {
         Thread {
             try {
                 val client = OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(1, TimeUnit.SECONDS)
                     .build()
                 val request = Request.Builder()
                     .url(url)
+                    .get()
                     .build()
                 // 发起请求并处理响应
                 client.newCall(request).execute().use { response ->

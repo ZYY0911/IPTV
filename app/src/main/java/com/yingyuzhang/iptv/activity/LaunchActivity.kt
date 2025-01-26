@@ -61,30 +61,25 @@ class LaunchActivity : BaseActivity() {
                     this,
                     object : DownloadCallback {
                         override fun onDownloadSuccess(file: String) {
-                            if (file.isEmpty()) {
-                                runOnUiThread {
-                                    Toast.makeText(
-                                        this@LaunchActivity,
-                                        "视频源获取失败，请重启App或到设置中手动更新",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            } else {
-                                if (SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.IS_IPV6))
-                                    SharedPreferencesUtil.putLong(
-                                        SharedPreferencesUtil.TV_UPDATE_V6,
-                                        System.currentTimeMillis()
-                                    )
-                                else SharedPreferencesUtil.putLong(
-                                    SharedPreferencesUtil.TV_UPDATE_V4,
+                            if (SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.IS_IPV6))
+                                SharedPreferencesUtil.putLong(
+                                    SharedPreferencesUtil.TV_UPDATE_V6,
                                     System.currentTimeMillis()
                                 )
-                            }
+                            else SharedPreferencesUtil.putLong(
+                                SharedPreferencesUtil.TV_UPDATE_V4,
+                                System.currentTimeMillis()
+                            )
                             getShowTime()
                         }
-
                         override fun onDownloadFailure(exception: Exception) {
-                            onDownloadSuccess("")
+                            runOnUiThread {
+                                Toast.makeText(
+                                    this@LaunchActivity,
+                                    "视频源获取失败，请重启App或到设置中手动更新",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     })
             } else {
@@ -100,20 +95,17 @@ class LaunchActivity : BaseActivity() {
         if (!FileUtils().existList(this, "e.xml") || isUpdateToday) {
             FileUtils().downloadFile(App.getTvShowTime(), "e.xml", this, object : DownloadCallback {
                 override fun onDownloadSuccess(file: String) {
-                    if (file.isEmpty()) {
-                        runOnUiThread {
-                            Toast.makeText(
-                                this@LaunchActivity,
-                                "预告单下载失败，请重启App或到设置中手动更新",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
                     startActivity<MainActivity>()
                 }
 
                 override fun onDownloadFailure(exception: Exception) {
-                    onDownloadSuccess("")
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@LaunchActivity,
+                            "预告单下载失败，请重启App或到设置中手动更新",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             })
         } else {
@@ -121,7 +113,7 @@ class LaunchActivity : BaseActivity() {
         }
     }
 
-    inline fun <reified T : Activity> Context.startActivity(isCheck: Boolean? = true) {
+    inline fun <reified T : Activity> Context.startActivity(isCheck: Boolean? = SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.IS_IPV6)) {
         if (isCheck == true) {
             NetUtils().isIPv6Supported(this, object : DownloadCallback {
                 override fun onDownloadSuccess(file: String) {
