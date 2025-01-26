@@ -2,6 +2,7 @@ package com.yingyuzhang.iptv.activity
 
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.net.TrafficStats
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -39,8 +40,9 @@ class MainActivity : BaseActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var exoPlayer: ExoPlayer
-    private lateinit var bandwidthMeter: DefaultBandwidthMeter
 
+    private var lastTotalRxBytes: Long = 0
+    private var lastTimeStamp: Long = 0
     private var startY: Float = 0f
     private var endY: Float = 0f
     private val SWIPE_THRESHOLD = 200 // 自定义的滑动阈值
@@ -65,26 +67,23 @@ class MainActivity : BaseActivity() {
 
     private val updateNetworkSpeedRunnable = @UnstableApi object : Runnable {
         override fun run() {
-            val speedInBps = bandwidthMeter.bitrateEstimate.toDouble() / 10
-            val speedInKbps = speedInBps / 1000 // 计算 KB/s
-            val speedInMbps = speedInKbps / 1000 // 计算 MB/s
+            val nowTotalRxBytes = TrafficStats.getTotalRxBytes()
+            val nowTimeStamp = System.currentTimeMillis()
+
+            val speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000) /
+                    (nowTimeStamp - lastTimeStamp) // 单位：B/s
+
+            lastTotalRxBytes = nowTotalRxBytes
+            lastTimeStamp = nowTimeStamp
+
+            // 转换为KB/s或MB/s
             val speedText = when {
-                speedInMbps > 0.9 -> String.format(
-                    Locale.SIMPLIFIED_CHINESE,
-                    "%.1f\nMB/s",
-                    speedInMbps
-                )
-
-                speedInKbps > 0.9 -> String.format(
-                    Locale.SIMPLIFIED_CHINESE,
-                    "%.1f\nKB/s",
-                    speedInKbps
-                )
-
-                else -> String.format(Locale.SIMPLIFIED_CHINESE, "%.2d\nbps", speedInBps)
+                speed >= 1024 * 1024 -> String.format("%.2f\nMB/s", speed / (1024.0 * 1024))
+                speed >= 1024 -> String.format("%.2f\nKB/s", speed / 1024.0)
+                else -> "$speed B/s"
             }
             binding.tvNetSpeed.text = speedText
-            handler.postDelayed(this, 1000)
+            handler.postDelayed(this, 500)
         }
     }
 
@@ -92,11 +91,9 @@ class MainActivity : BaseActivity() {
     override fun initData() {
         super.initData()
         // 初始化带宽监控
-        bandwidthMeter = DefaultBandwidthMeter.Builder(this).build()
         exoPlayer = ExoPlayer.Builder(this)
 //            .setMediaSourceFactory(DefaultMediaSourceFactory(this).setLiveTargetOffsetMs(5000))
             .setMediaSourceFactory(DefaultMediaSourceFactory(this))
-            .setBandwidthMeter(bandwidthMeter)
             .build()
         for (tvItem in App.getTvList()) {
             val mediaItem = MediaItem.Builder()
@@ -236,17 +233,19 @@ class MainActivity : BaseActivity() {
     }
 
     private fun disShowLoadAnim() {
-        handler.removeCallbacks(updateNetworkSpeedRunnable)
         handler.postDelayed(showRunnable!!, 2000)
         binding.progressBar.visibility = View.GONE
         binding.tvNetSpeed.visibility = View.GONE
         errorTimes = 0
+        handler.removeCallbacks(updateNetworkSpeedRunnable)
     }
 
     private fun showLoadAnim() {
+        lastTotalRxBytes = TrafficStats.getTotalRxBytes()
+        lastTimeStamp = System.currentTimeMillis()
+        handler.post(updateNetworkSpeedRunnable)
         binding.tvNetSpeed.visibility = View.VISIBLE
         binding.progressBar.visibility = View.VISIBLE
-        handler.post(updateNetworkSpeedRunnable)
     }
 
     private fun showTvListPop() {
