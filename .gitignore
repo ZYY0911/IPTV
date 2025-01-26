@@ -91,3 +91,5 @@ app/seeds.txt
 app/unused.txt
 app/mapping.txt
 app/release
+
+app/.DS_Store
