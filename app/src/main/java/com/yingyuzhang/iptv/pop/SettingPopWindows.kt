@@ -79,7 +79,7 @@ class SettingPopWindows(
                     }
                     if (null != onClickItemInterface) onClickItemInterface!!.onClickItem(tempText)
                 }
-            }, "提示", "确定要修改成${tempText},确定后App自动退出")
+            }, "提示", "确定要修改成${tempText}吗？")
         }
         binding.radioGroup2.setOnCheckedChangeListener { group, checkedId ->
             val tempRb = binding.root.findViewById<RadioButton>(checkedId).text.toString()

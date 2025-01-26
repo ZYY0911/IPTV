@@ -2,11 +2,10 @@ package com.yingyuzhang.iptv
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
+import android.content.Intent
+import android.os.Bundle
 import com.yingyuzhang.iptv.bean.TvList
-import com.yingyuzhang.iptv.utils.FileUtils
 import com.yingyuzhang.iptv.utils.SharedPreferencesUtil
-import java.io.File
 
 //              佛祖保佑，永无BUG
 //                        _oo0oo_
@@ -54,11 +53,10 @@ class App : Application() {
 //    val tvListUrl = "https://live.fanmingming.com/tv/m3u/ipv6.m3u"
 //    val tvListUrl = "https://live.fanmingming.com/tv/m3u/itv.m3u"
         private const val rootUrl = "https://live.fanmingming.cn"
-        private var tvListUrl = "$rootUrl/tv/m3u/ipv6.m3u"
-        private var tvFileName = "ipv6.txt"
+        private var tvListUrl = ""
+        private var tvFileName = ""
         private var tvShowTime = "$rootUrl/e.xml"
 
-        //        private var tvShowTime = "https://epg.112114.xyz/pp.xml"
         fun applicationContext(): Context {
             return instance!!.applicationContext
         }
@@ -82,29 +80,56 @@ class App : Application() {
         fun getTvShowTime(): String {
             return tvShowTime
         }
+
+        fun restartApp(context: Context, targetActivity: Class<*>, extras: Bundle? = null) {
+            tvList.clear()
+            if (SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.IS_IPV6)) {
+                tvListUrl =
+                    SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl6).toString()
+                tvFileName =
+                    SharedPreferencesUtil.getString(SharedPreferencesUtil.TvFileName6).toString()
+            } else {
+                tvListUrl =
+                    SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl4).toString()
+                tvFileName =
+                    SharedPreferencesUtil.getString(SharedPreferencesUtil.TvFileName4).toString()
+            }
+            val intent = Intent(context, targetActivity)
+            extras?.let { intent.putExtras(it) }
+            context.startActivity(intent)
+        }
+
     }
+
 
     override fun onCreate() {
         super.onCreate()
         SharedPreferencesUtil.init(this)
         if (!SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.FIRST_INIT)) {
             SharedPreferencesUtil.putBoolean(SharedPreferencesUtil.FIRST_INIT, true)
-            SharedPreferencesUtil.putBoolean(SharedPreferencesUtil.IS_IPV6, true)
+            SharedPreferencesUtil.putBoolean(SharedPreferencesUtil.IS_IPV6, false)
             SharedPreferencesUtil.putBoolean(SharedPreferencesUtil.IS_AUTO_UPDATE, true)
-            SharedPreferencesUtil.putString(SharedPreferencesUtil.TvListUrl6, "/tv/m3u/ipv6.m3u")
+            SharedPreferencesUtil.putString(
+                SharedPreferencesUtil.TvListUrl6,
+                "https://live.fanmingming.cn/tv/m3u/ipv6.m3u"
+            )
             SharedPreferencesUtil.putString(SharedPreferencesUtil.TvFileName6, "ipv6.txt")
-            SharedPreferencesUtil.putString(SharedPreferencesUtil.TvListUrl4, "/tv/m3u/itv.m3u")
-            SharedPreferencesUtil.putString(SharedPreferencesUtil.TvFileName4, "itv.txt")
+//            SharedPreferencesUtil.putString(SharedPreferencesUtil.TvListUrl4, "https://ghfast.top/https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u")
+            SharedPreferencesUtil.putString(
+                SharedPreferencesUtil.TvListUrl4,
+                "https://mirror.ghproxy.com/https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u"
+            )
+            SharedPreferencesUtil.putString(SharedPreferencesUtil.TvFileName4, "APTV.txt")
             SharedPreferencesUtil.putString(SharedPreferencesUtil.SHOW_RATIO, "原始比例")
         }
         if (SharedPreferencesUtil.getBoolean(SharedPreferencesUtil.IS_IPV6)) {
             tvListUrl =
-                "$rootUrl${SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl6)}"
+                SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl6).toString()
             tvFileName =
                 SharedPreferencesUtil.getString(SharedPreferencesUtil.TvFileName6).toString()
         } else {
             tvListUrl =
-                "$rootUrl${SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl4)}"
+                SharedPreferencesUtil.getString(SharedPreferencesUtil.TvListUrl4).toString()
             tvFileName =
                 SharedPreferencesUtil.getString(SharedPreferencesUtil.TvFileName4).toString()
         }

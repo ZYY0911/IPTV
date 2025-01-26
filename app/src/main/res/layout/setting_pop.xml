@@ -26,6 +26,7 @@
         android:text="修改后需重启此应用"
         android:textColor="@color/white"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/radio_group"
         app:layout_constraintLeft_toRightOf="@id/radio_group"
         app:layout_constraintRight_toRightOf="parent"
